@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d1e6d71201d459d9d6454b42c1c075b" Name="Diagram1">
+        <EntityTypeShape EntityType="JCOModel.AgentEventParticipate" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Announcement" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Award" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.CompanyProfile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Event" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Guest" Width="1.5" PointX="8.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.ManagerdistributeAmount" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Poll" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.PollOption" Width="1.5" PointX="5.25" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.PollResult" Width="1.5" PointX="7.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Role" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.RoleAssignment" Width="1.5" PointX="3" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.Subject" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JCOModel.TblUser" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <AssociationConnector Association="JCOModel.FK_AgentEventParticipate_AgentEventParticipate" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_AgentEventParticipate_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Announcement_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Award_User" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Event_User" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Guest_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Guest_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_ManagerdistributeAmount_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_ManagerdistributeAmount_TblUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Poll_User" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_PollOption_Poll" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_PollResult_Poll" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_PollResult_PollOption" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_PollResult_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Role_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Role_UpdatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_TblUser_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_RoleAssignment_CreatedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="JCOModel.FK_Subject_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JCOModel.Duty" Width="1.5" PointX="3.75" PointY="4.625" />
+        <EntityTypeShape EntityType="JCOModel.Inception" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="JCOModel.FK_Inception_Agent" />
+        <EntityTypeShape EntityType="JCOModel.UserDocument" Width="1.5" PointX="3" PointY="39.75" />
+        <AssociationConnector Association="JCOModel.FK_UserDocument_UserID" />
+        <EntityTypeShape EntityType="JCOModel.AssignAnnouncement" Width="1.5" PointX="5.25" PointY="13.625" />
+        <AssociationConnector Association="JCOModel.FK_AssignAnnouncement_Announcement" />
+        <AssociationConnector Association="JCOModel.FK_AssignAnnouncement_User" />
+        <EntityTypeShape EntityType="JCOModel.AssignPollingAgent" Width="1.5" PointX="8.25" PointY="26.75" />
+        <AssociationConnector Association="JCOModel.FK_AssignPollingAgent_Agent" />
+        <AssociationConnector Association="JCOModel.FK_AssignPollingAgent_Polling" />
+        <EntityTypeShape EntityType="JCOModel.AssignDuty" Width="1.5" PointX="8" PointY="12.625" />
+        <EntityTypeShape EntityType="JCOModel.RequestTrade" Width="1.5" PointX="11.25" PointY="16.875" />
+        <AssociationConnector Association="JCOModel.FK_AssignDuty_AgentId" />
+        <AssociationConnector Association="JCOModel.FK_AssignDuty_Duty" />
+        <AssociationConnector Association="JCOModel.FK_RequestTrade_AssignDuty" />
+        <AssociationConnector Association="JCOModel.FK_RequestTrade_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

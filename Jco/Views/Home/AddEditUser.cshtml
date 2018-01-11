@@ -1,0 +1,381 @@
+﻿@model CommonUtility.UserModel
+@{
+    ViewBag.Title = "AddEditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script>
+    function CheckCContact(evt) {
+        var pin = $('#Mobile').val();
+
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+    }
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        debugger;
+        var UserIdd = $('#UserId').val();
+        // $("#cid").hide();
+        //$("#eid").hide();
+        $('#Email').focusout(function () {
+            debugger;
+            var email = $(this).val();
+
+            var emailPattern = /^\w+([-+.']\w+)*@@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+            if (!emailPattern.test(email)) {
+                $('#Email').css("border", "1px solid red");
+                //$('#Email').val('');
+            }
+            else {
+                $('#divStatus').css("color", "blue");
+                $('#divStatus').html("Checking.......");
+
+                setTimeout(function () {
+                    debugger;
+                    $.post("/Home/CheckDuplicate", { EmailId: email,UserId:UserIdd }, function (data) {
+                        var myObject = eval('(' + data + ')');
+                        var res = myObject;
+                        if (res == true) {
+                            $('#divStatus').css("color", "red");
+                            $('#divStatus').html("Exists");
+                            checkEmail = true;
+                            $('#Email').val('');
+                            return checkEmail;
+                        }
+                        else {
+                            $('#divStatus').css("color", "green");
+                            $('#divStatus').html("Available");
+                            checkEmail = false;
+                            return checkEmail;
+                        }
+                    });
+                }, 500);
+            }
+
+        });
+
+        $('#Email').focusin(function () {
+            $(this).css("border", "");
+            //$(this).val('');
+            $('#divStatus').html('');
+        });
+
+        //Mobile
+        $('#Mobile').focusout(function () {
+            debugger;
+            var email = $(this).val();
+            if (email == "") {
+                $('#Mobile').css("border", "1px solid red");
+                $('#Mobile').val('');
+            }
+            else {
+                $('#divStatusMobile').css("color", "blue");
+                $('#divStatusMobile').html("Checking.......");
+
+                setTimeout(function () {
+                    debugger;
+                    $.post("/Home/CheckDuplicateMob", { Mobile: email,UserId:UserIdd }, function (data) {
+                        var myObject = eval('(' + data + ')');
+                        var res = myObject;
+                        if (res == true) {
+                            $('#divStatusMobile').css("color", "red");
+                            $('#divStatusMobile').html("Exists");
+                            checkEmail = true;
+                            $('#Mobile').val('');
+                            return checkEmail;
+                        }
+                        else {
+                            $('#divStatusMobile').css("color", "green");
+                            $('#divStatusMobile').html("Available");
+                            checkEmail = false;
+                            return checkEmail;
+                        }
+                    });
+                }, 500);
+
+            }
+        });
+
+        $('#Mobile').focusin(function () {
+            $(this).css("border", "");
+            //$(this).val('');
+            $('#divStatusMobile').html('');
+        });
+
+        //Agent Code
+        $('#AgentCode').focusout(function () {
+            debugger;
+            var email = $(this).val();
+            if (email == "") {
+                $('#AgentCode').css("border", "1px solid red");
+                $('#AgentCode').val('');
+            }
+            else {
+                $('#divStatusCode').css("color", "blue");
+                $('#divStatusCode').html("Checking.......");
+
+                setTimeout(function () {
+                    debugger;
+                    $.post("/Home/CheckDuplicateCode", { code: email, UserId: UserIdd }, function (data) {
+                        var myObject = eval('(' + data + ')');
+                        var res = myObject;
+                        if (res == true) {
+                            $('#divStatusCode').css("color", "red");
+                            $('#divStatusCode').html("Exists");
+                            checkEmail = true;
+                            $('#AgentCode').val('');
+                            return checkEmail;
+                        }
+                        else {
+                            $('#divStatusCode').css("color", "green");
+                            $('#divStatusCode').html("Available");
+                            checkEmail = false;
+                            return checkEmail;
+                        }
+                    });
+                }, 500);
+            }
+
+
+
+        });
+
+        $('#AgentCode').focusin(function () {
+            $(this).css("border", "");
+            //$(this).val('');
+            $('#divStatusCode').html('');
+        });
+    });
+</script>
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                  Add Edit User
+                </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Add Edit User
+                            </span>
+                        </a>
+                    </li>
+                   
+                  
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    User Form 
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+        @using (Html.BeginForm("AddEditUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+        {
+                    @Html.HiddenFor(x => x.UserId)
+                    @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                             
+                                <label class="col-lg-1 col-form-label">
+                                    Email: <span id="divStatus"></span>
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control m-input", @Placeholder = "Email", @required = "Required", @Id = "Email" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Mobile: <span id="divStatusMobile"></span>
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control m-input", @Placeholder = "Mobile", @required = "Required", onkeypress = "return CheckCContact(event)" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Password:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control m-input", @Placeholder = "Password", @required = "Required" })
+                                </div>
+                            
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-1 col-form-label">
+                                    Full Name:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control m-input", @Placeholder = "Full Name", @required = "Required" })
+                                </div>
+                               
+                                <label class="col-lg-1 col-form-label">
+                                    Join Date:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.JoinDate, new { @class = "form-control m-input", @required = "Required", @type = "date"})
+                                    @*<input class="form-control m-input" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">*@
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Gender:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.DropDownListFor(x => x.Gender, Model.ListGender, "Select", new { @class = "form-control m-input", @required = "Required" })
+                                </div>
+                               
+                        
+                            </div>
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-1 col-form-label">
+                                    Roles: 
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.DropDownListFor(x => x.RoleId, Model.Roles, "Select", new { @class = "form-control m-input", @required = "Required" })
+                                </div>
+                                <label  class="col-lg-1 col-form-label">
+                                    Agent Code: <span id="divStatusCode"></span>
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.AgentCode, new { @class = "form-control m-input", @Placeholder = "Agent Code" })
+                                </div>
+                                <label id="lblcode1" style="display:none" class="col-lg-1 col-form-label">
+                                    Manager: 
+                                </label>
+                                <div id="DivCode1" style="display:none" class="col-lg-3">
+                                    @Html.DropDownListFor(x => x.ManagerID, Model.ManagerList, "Select", new { @class = "form-control m-input"})
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    DOB:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.DOB, new { @class = "form-control m-input", @required = "Required", @type = "date" })
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-1 col-form-label">
+                                    Photo:
+                                </label>
+                                <div class="col-lg-3">
+                                    <input type="file" name="file" id="photo" />
+                                    @if (Model.Photo != "" && Model.Photo!=null)
+                                    { 
+                                     <img src="~/Images/Users/@Model.Photo"  height="60px" width="60px"/>
+                                    }
+                                   
+
+                                    @*@Html.DisplayFor(x=>x.Photo)*@
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    IsActive:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.CheckBoxFor(x => x.IsActive, new { @class = "" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        <button onclick="return Validate()" type="submit" class="btn btn-brand">
+                                            Submit
+                                        </button>
+                                        <a href="@Url.Action("User","Home")"  class="btn btn-secondary">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @*</form>*@
+}
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $('#RoleId').change(function () {
+
+        //check if checkbox is checked
+        var rlid = $('#RoleId').val();
+        if (rlid==3) {
+            //$('#lblcode').show();
+            //$('#DivCode').show();
+            $('#lblcode1').show();
+            $('#DivCode1').show();
+
+
+        } else {
+            //$('#lblcode').hide();
+            //$('#DivCode').hide();
+            $('#lblcode1').hide();
+            $('#DivCode1').hide();
+            $('#AgentCode').val('');
+
+        }
+    });
+
+</script>
+@if (Model.RoleId == 3)
+{
+    <script>
+        //$('#lblcode').show();
+        $('#lblcode1').show();
+        //$('#DivCode').show();
+        $('#DivCode1').show();
+    </script>
+}
+<script>
+    function Validate()
+    {
+        var Role = $('#RoleId').val();
+        if (Role == '3')
+        {
+            var Manag = $('#ManagerID').val();
+            if (Manag == "")
+            {
+                alert('Please select Manager');
+                return false;
+            }
+        }
+    }
+</script>

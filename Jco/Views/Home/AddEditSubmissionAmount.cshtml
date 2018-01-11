@@ -1,0 +1,219 @@
+﻿@model CommonUtility.ManagerdistributeAmountModel
+@{
+    ViewBag.Title = "AddEditSubmissionAmount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                      Add Edit User
+                    </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                AddEdit Submission Amount
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Add Edit Submission Amount
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("AddEditSubmissionAmount", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                        @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-2 col-form-label">
+                                    Date:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.DateStr, new { @class = "form-control m-input", @required = "Required", @type = "date" })
+                                    <br />
+                                </div>
+                                @*<div class="col-lg-2">
+                                    <a onclick="Load()" style="color:white;" class="btn btn-brand">Load</a>
+                                </div>*@
+                            </div>
+                                <div class="m-portlet__head-caption">
+
+
+
+                                    <div class="form-group m-form__group row align-items-center">
+                                        <div class="col-md-4">
+                                            <div class="m-input-icon m-input-icon--left">
+                                                <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
+                                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                    <span>
+                                                        <i class="la la-search"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <table class="m-datatable" id="html_table" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th title="Field #1">
+                                                    Agent Code
+                                                </th>
+                                                <th title="Field #1">
+                                                    Agent Name
+                                                </th>
+                                                <th title="Field #1">
+                                                    Manager Name
+                                                </th>
+                                                <th title="Field #2">
+                                                    Amount
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.ManagerdistributeAmountList)
+                                        {
+                                                <tr>
+                                                    <td>
+                                                        @item.Code
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" name="id" value="@item.ID" />
+                                                        <input type="hidden" name="Manager" value="@item.ManagerId" />
+
+                                                        <input type="hidden" name="Agent" value="@item.AgentId" />
+                                                        @item.AgentName
+                                                    </td>
+                                                    <td>
+                                                        @item.Manager
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control m-input" name="Amount" value="@item.Amount" />
+                                                    </td>
+
+
+
+                                                </tr>
+                                        }
+                                            @*@foreach (var item in Model.ManagerdistributeAmountListAdmin)
+                        {
+                            <tr>
+
+                                <td>
+                                    <input type="hidden" name="id" value="@item.ID" />
+                                    <input type="hidden" name="Manager" value="@item.ManagerId" />
+
+                                    <input type="hidden" name="Agent" value="@item.AgentId" />
+                                    @item.AgentName
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control m-input" name="Amount" value="@item.Amount" />
+                                </td>
+
+
+
+                            </tr>
+                        }*@
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            
+                          
+                     
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn btn-brand">
+                                            Submit
+                                        </button>
+                                        <a href="@Url.Action("SalesAmount", "Home")" class="btn btn-secondary">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    }
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+    function Load()
+    {
+        var DateStr = $('#DateStr').val();
+        if (DateStr != "" && DateStr != null)
+        {
+            window.location.href = '@Url.Action("AddEditSubmissionAmount", "Home")' + '?ManagerId=' + 0 + '&Date=' + DateStr;
+        }
+    }
+    $(document).ready(function () {
+        debugger;
+        //var UserIdd = $('#UserId').val();
+
+        $('#DateStr').change(function () {
+ 
+            var DateStr = $('#DateStr').val();
+            window.location.href = '@Url.Action("AddEditSubmissionAmount", "Home")' + '?ManagerId=' + 0 + '&Date=' + DateStr;
+        });
+
+
+
+
+    });
+</script>
+

@@ -1,0 +1,143 @@
+﻿@model CommonUtility.InceptionModel
+@{
+    ViewBag.Title = "AddEditInception";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                        Add Edit Inception
+                    </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Add Edit Inception
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Inception Form
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("AddEditInception", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                        @Html.HiddenFor(x => x.InceptionId)
+                        @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-2 col-form-label">
+                                    Period : <span id="divStatus"></span>
+                                </label>
+                                <div class="col-lg-2">
+                                    @Html.DropDownListFor(x => x.MonthFrom, Model.ListMonth, "MM", new { @class = "form-control m-input",@Placeholder="MM", @required = "Required" })
+                                </div>
+                                <div class="col-lg-2">
+                                    @Html.DropDownListFor(x => x.YearFrom, Model.ListYear, "Year", new { @class = "form-control m-input", @Placeholder = "Year", @required = "Required" })
+                                </div>
+                             
+                               
+                            </div>
+                            <div class="form-group m-form__group row">
+                                @foreach (var item in Model.AgentList)
+                                {
+                                    <input type="hidden" name="id" value="0" />
+                                   
+
+                                    <div class="col-lg-4">
+                                        Agent Name:   @item.Name
+                                        <input type="hidden" name="Agent" value="@item.UserId" />
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                       MTD Amount: <input type="text" name="MTDAmount" value="0" />
+                                    </div>
+                                    
+                                       <div class="col-lg-4">
+                                       YTD Amount: <input type="text" name="YTDAmount" value="0" />
+                                    </div>
+                                }
+                            </div>
+                         
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        <button type="submit" onclick="return chkMonth()" class="btn btn-brand">
+                                            Submit
+                                        </button>
+                                    
+                                        <a href="@Url.Action("Inception","Home")" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    }
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    function chkMonth()
+    {
+        var MF = $("#MonthFrom").val();
+        var YearFrom = $("#YearFrom").val();
+        if (MF == "")
+        {
+            alert('Please choose Month!');
+            return false;
+        }
+        else if (YearFrom == "") {
+            alert('Please choose Year!');
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+</script>

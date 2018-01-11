@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title ">
+                Welcome to  Dashboard
+                </h3>
+            </div>
+            @*<div>
+                <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+                    <span class="m-subheader__daterange-label">
+                        <span class="m-subheader__daterange-title"></span>
+                        <span class="m-subheader__daterange-date m--font-brand"></span>
+                    </span>
+                    <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+                        <i class="la la-angle-down"></i>
+                    </a>
+                </span>
+            </div>*@
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+
+        <!--Begin::Main Portlet-->
+        <div class="row">
+            <div class="col-xl-12">
+                <div id="calendar"></div>
+                <!--begin::Portlet-->
+                @*<div class="m-portlet" id="m_portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon">
+                                    <i class="flaticon-map-location"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Calendar
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+                                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="la la-plus"></i>
+                                            <span>
+                                                Add Event
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div id="m_calendar"></div>
+                    </div>
+                </div>*@
+                <!--end::Portlet-->
+            </div>
+        </div>
+        <!--End::Main Portlet-->
+
+
+
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var sourceFullView = { url: '@Url.Action("GetDiaryEvents", "Home")' };
+        var sourceSummaryView = { url: '@Url.Action("GetDiarySummary", "Home")' };
+        var CalLoading = true;
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                //right: 'month,agendaWeek,agendaDay'
+                right: 'month'
+            },
+            defaultView: 'month',
+            editable: true,
+            allDaySlot: false,
+            selectable: true,
+            //slotMinutes: 15,
+            events: '@Url.Action("GetDiarySummary", "Home")',
+            eventClick: function (calEvent, jsEvent, view) {
+                alert('You clicked on event id: ' + calEvent.id
+                    + "\nSpecial ID: " + calEvent.someKey
+                    + "\nAnd the title is: " + calEvent.title);
+
+            },
+
+            eventDrop: function (event, dayDelta, minuteDelta, allDay, revertFunc) {
+                if (confirm("Confirm move?")) {
+                    UpdateEvent(event.id, event.start);
+                }
+                else {
+                    revertFunc();
+                }
+            },
+
+            eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
+
+                if (confirm("Confirm change appointment length?")) {
+                    UpdateEvent(event.id, event.start, event.end);
+                }
+                else {
+                    revertFunc();
+                }
+            },
+
+
+
+            dayClick: function (date, allDay, jsEvent, view) {
+
+                $('#eventTitle').val("");
+                $('#eventDate').val($.fullCalendar.formatDate(date, 'dd/MM/yyyy'));
+                $('#eventTime').val($.fullCalendar.formatDate(date, 'HH:mm'));
+                ShowEventPopup(date);
+            },
+
+            viewRender: function (view, element) {
+
+                if (!CalLoading) {
+                    //if (view.name == 'month') {
+                    //    $('#calendar').fullCalendar('removeEventSource', sourceFullView);
+                    //    $('#calendar').fullCalendar('removeEvents');
+                    //    $('#calendar').fullCalendar('addEventSource', sourceSummaryView);
+                    //}
+                    //else {
+                    //    $('#calendar').fullCalendar('removeEventSource', sourceSummaryView);
+                    //    $('#calendar').fullCalendar('removeEvents');
+                    //    $('#calendar').fullCalendar('addEventSource', sourceFullView);
+                    //}
+                }
+            }
+
+        });
+
+        CalLoading = false;
+
+
+    });
+
+    //$('#btnInit').click(function () {
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: "/Home/Init",
+    //        success: function (response) {
+    //            if (response == 'True') {
+    //                $('#calendar').fullCalendar('refetchEvents');
+    //                alert('Database populated! ');
+    //            }
+    //            else {
+    //                alert('Error, could not populate database!');
+    //            }
+    //        }
+    //    });
+    //});
+
+    //$('#btnPopupCancel').click(function () {
+    //    ClearPopupFormValues();
+    //    $('#popupEventForm').hide();
+    //});
+
+    //$('#btnPopupSave').click(function () {
+
+    //    $('#popupEventForm').hide();
+
+    //    var dataRow = {
+    //        'Title': $('#eventTitle').val(),
+    //        'NewEventDate': $('#eventDate').val(),
+    //        'NewEventTime': $('#eventTime').val(),
+    //        'NewEventDuration': $('#eventDuration').val()
+    //    }
+
+    //    ClearPopupFormValues();
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: "/Home/SaveEvent",
+    //        data: dataRow,
+    //        success: function (response) {
+    //            if (response == 'True') {
+    //                $('#calendar').fullCalendar('refetchEvents');
+    //                alert('New event saved!');
+    //            }
+    //            else {
+    //                alert('Error, could not save event!');
+    //            }
+    //        }
+    //    });
+    //});
+
+    //function ShowEventPopup(date) {
+    //    ClearPopupFormValues();
+    //    $('#popupEventForm').show();
+    //    $('#eventTitle').focus();
+    //}
+
+    //function ClearPopupFormValues() {
+    //    $('#eventID').val("");
+    //    $('#eventTitle').val("");
+    //    $('#eventDateTime').val("");
+    //    $('#eventDuration').val("");
+    //}
+
+    //function UpdateEvent(EventID, EventStart, EventEnd) {
+
+    //    var dataRow = {
+    //        'ID': EventID,
+    //        'NewEventStart': EventStart,
+    //        'NewEventEnd': EventEnd
+    //    }
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: "/Home/UpdateEvent",
+    //        dataType: "json",
+    //        contentType: "application/json",
+    //        data: JSON.stringify(dataRow)
+    //    });
+    //}
+
+</script>
+
+
+
+
+@*<script src="~/Scripts/jquery-1.8.2.js"></script>*@
+@*<script>
+    $(document).ready(function () {
+        $('#cal').fullCalendar({
+
+            events: function (start, end, callback) {
+                $.ajax({
+                    url: '@Url.Action("~/Home/Events")',
+                    url: '@Url.Action("Events","Home")',
+                    dataType: 'json',
+                    data: {
+                        start: start.toLocaleString("yyyy-MM-dd"),
+                        end: end.toLocaleString("yyyy-MM-dd")
+                    },
+
+                    success: function (doc) {
+                        var events = [];
+                        $.each(doc, function (key, val) {
+                            alert(val.start);
+                            events.push({
+                                
+                                title: val.title,
+                                start: val.start,
+                                url: 'http://google.com',
+                                //color: 'yellow',   // an option!
+                                //textColor: 'black' // an option!
+                            });
+
+                        });
+
+                        callback(events);
+                    }
+                });
+            }
+        });
+    })
+</script>*@

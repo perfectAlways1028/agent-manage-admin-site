@@ -1,0 +1,106 @@
+﻿@model CommonUtility.ManagerdistributeAmountModel
+@{
+    ViewBag.Title = "AddEditAdminApprovalManagerdistributeListAmount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                      Add Edit User
+                    </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Add Edit User
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Add Edit Distribute Amount
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("AddEditAdminApprovalManagerdistributeListAmount", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                        @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+
+                        @Html.HiddenFor(x => x.AgentId)
+                        @Html.HiddenFor(x => x.ManagerId)
+                        @Html.HiddenFor(x => x.ID)
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-1 col-form-label">
+                                    AgentName:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Model.AgentName
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Amount:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control m-input", @Placeholder = "Amount", @required = "Required", @Id = "Email" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn btn-brand">
+                                            Submit
+                                        </button>
+                                        <a href="@Url.Action("AdminApproval", "Home")" class="btn btn-secondary">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    }
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+    </div>
+</div>

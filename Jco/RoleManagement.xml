@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pages>
+  <Page Id="1" Name="Announcement"></Page>
+  <Page Id="2" Name="Award"></Page>
+  <Page Id="3" Name="Duty" ></Page>
+  <Page Id="4" Name="Event"></Page>
+  <Page Id="5" Name="Poll"></Page>
+  <Page Id="6" Name="Subject"></Page>
+  <Page Id="7" Name="User"></Page>
+  <Page Id="8" Name="Role"></Page>
+  <Page Id="9" Name="CompanyProfile"></Page>
+  <Page Id="10" Name="Distribute Amount"></Page>
+  <Page Id="11" Name="Inception"></Page>
+  <Page Id="12" Name="UserDocument"></Page>
+</Pages>

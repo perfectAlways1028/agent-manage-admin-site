@@ -1,0 +1,306 @@
+﻿@model CommonUtility.InceptionModel
+@{
+    ViewBag.Title = "UpdateInception";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                        Add Edit Inception
+                    </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                 Inception   
+                                
+                                   
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Inception  
+
+                                   
+                                        @*@if (Convert.ToBoolean(Session["Add"]))
+                                        {
+                                            <a href="@Url.Action("AddEditInception","Home")" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                                <span>
+                                                    <i class="la la-cart-plus"></i>
+                                                    <span>
+                                                        Create New Inception
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        }*@
+                                 
+                                </h3>
+                            </div>
+                        </div>
+                   
+                    </div>
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("UpdateInception", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                        @Html.HiddenFor(x => x.InceptionId)
+                        @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-1">
+                                    Period : <span id="divStatus"></span>
+                                </label>
+                                <div class="col-lg-2">
+                                    @Html.DropDownListFor(x => x.MonthFrom, Model.ListMonth, "MM", new { @class = "form-control m-input", @Placeholder = "MM", @required = "Required" })
+                                </div>
+                                <div class="col-lg-2">
+                                    @Html.DropDownListFor(x => x.YearFrom, Model.ListYear, "Year", new { @class = "form-control m-input", @Placeholder = "Year", @required = "Required" })
+                                </div>
+                             
+                                <div class="col-lg-2">
+                                    <a onclick="Load()" style="color:white;" class="btn btn-brand">Load</a>
+                                </div>
+
+                            </div>
+                          
+ @if (Model.InceptionList.Count() > 0)
+{
+    <div class="m-portlet__body">
+        <!--begin: Search Form -->
+ 
+            
+                @*<div class="col-xl-8 order-2 order-xl-1">*@
+                    <div class="form-group m-form__group row align-items-center">
+                        <div class="col-md-4">
+                            <div class="m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span>
+                                        <i class="la la-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                @*</div>*@
+
+         
+     
+        <!--end: Search Form -->
+
+
+
+
+        <table class="m-datatable" id="html_table" width="100%">
+            <thead>
+                <tr>
+                    <th title="Field #2">
+                        Agent Code
+                    </th>
+                    <th title="Field #2">
+                        Agent Name
+                    </th>
+                    <th title="Field #2">
+                        Manager Name
+                    </th>
+                  
+                    <th title="Field #2">
+                        MTD Amount
+                    </th>
+                    <th title="Field #2">
+                        YTD Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InceptionList)
+                                            {
+                                            <tr>
+                                                <td>
+                                                    @item.Code
+                                                </td>
+                                                <td>
+                                                    @item.AgentName
+                                                    <input type="hidden" name="InceptId" value="@item.InceptionId" />
+                                                    <input type="hidden" name="Agent" value="@item.AgentId" />
+                                                </td>
+                                                <td>
+                                                    @item.ManagerName
+                                                </td>
+                                            
+                                                <td>
+                                                    <input type="text" class="form-control m-input" name="MTDAmount" value="@item.MTD_WAPI" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control m-input" name="YTDAmount" value="@item.YTD_WAPI" />
+                                                </td>
+
+                                            </tr>
+                                            }
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+}
+                             
+                             
+                           
+
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        @if (Model.InceptionList.Count > 0)
+                                        {
+                                            if (Session["chk"].ToString() == "New")
+                                            { 
+                                                     <button type="submit" onclick="return chkMonth()" class="btn btn-brand">Submit </button>                                           
+                                            }
+                                            else { 
+                                             <button type="submit" onclick="return chkMonth()" class="btn btn-brand">Update </button>    
+                                            }
+                                       
+                                        }
+                                        
+
+                                        <a href="@Url.Action("Inception","Home")" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    }
+                    <!--end::Form-->
+@using (Html.BeginForm("ImportInception", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                    <div class="m-portlet__body">
+                       
+                        <div class="form-group m-form__group row">
+                            <label class="col-lg-12">
+                                <a class="btn btn-brand"  onclick="Template()">Download Template</a>
+
+                            </label>
+
+                            <label class="col-lg-2">
+                                Upload Csv:
+                            </label>
+                            <div class="col-lg-4">
+                                <input type="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required /> 
+                            </div>
+
+                            <label class="col-lg-1">
+                                Period : <span id="divStatus"></span>
+                            </label>
+                            <div class="col-lg-2">
+                                @Html.DropDownListFor(x => x.MonthFrom, Model.ListMonth, "MM", new { @class = "form-control m-input",Id="Months", @Placeholder = "MM", @required = "Required" })
+                            </div>
+                            <div class="col-lg-2">
+                                @Html.DropDownListFor(x => x.YearFrom, Model.ListYear, "Year", new { @class = "form-control m-input", Id = "Years", @Placeholder = "Year", @required = "Required" })
+                            </div>
+                            <div class="col-lg-3">
+                                <button type="submit"  class="btn btn-brand">
+                                    Upload
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                    
+
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    function chkMonth() {
+        var MF = $("#MonthFrom").val();
+       
+        if (MF != "") {
+
+        }
+        else {
+            alert('Please choose Month From!');
+            return false;
+        }
+        return true;
+    }
+    function Load() {
+        var MF = $("#MonthFrom").val();
+        var YF = $("#YearFrom").val();
+        if (MF == "") {
+            alert('Month From empty');
+        }
+
+        else if (YF == "") {
+            alert('Year From empty');
+        }
+
+        else {
+            var url = '@Url.Action("UpdateInception", "Home")' + '?MF=' + MF  + '&YF=' + YF ;
+            window.location.href = '@Url.Action("UpdateInception", "Home")' + '?MF=' + MF + '&YF=' + YF ;
+            //window.open(url);
+            @*$.post('@Url.Action("UpdateInception", "Home")', { MF: MF, MT: MT, YF: YF, YT: YF }, function (data) {
+
+            });*@
+        }
+    }
+    function Template() {
+        var MF = $("#MonthFrom").val();
+        var YF = $("#YearFrom").val();
+        if (MF != "" && YF != "") {
+            //var url = '@Url.Action("UpdateInception", "Home")' + '?MF=' + MF + '&YF=' + YF;
+            window.location.href = '@Url.Action("ExportInception", "Home")' + '?yy=' + YF + '&mm=' + MF;
+        }
+
+
+        else {
+
+            window.location.href = '@Url.Action("ExportInception", "Home")';
+
+            }
+    }
+</script>
+
+

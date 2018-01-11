@@ -1,0 +1,187 @@
+﻿@model CommonUtility.EventModel
+@{
+    ViewBag.Title = "AddEditEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                @*<h3 class="m-subheader__title m-subheader__title--separator">
+                    Add Edit Event
+                </h3>*@
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action("Dashboard","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                Add Edit Event
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Event Form
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("AddEditEvent", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                    {
+                        @Html.HiddenFor(x => x.EventId)
+                        @*<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">*@
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+
+                                <label class="col-lg-1 col-form-label">
+                                    Event Name: <span id="divStatus"></span>
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.EventName, new { @class = "form-control m-input", @Placeholder = "EventName", @required = "Required", @Id = "Email" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Event Date: 
+                                </label>
+                                <div class="col-lg-3">
+                                 @Html.TextBoxFor(x => x.EventDateBind, new { @class = "form-control m-input", @required = "Required", @type = "date" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    Description:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control m-input", @Placeholder = "Description", @required = "Required" })
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-1 col-form-label">
+                                    StartTime:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.StartTime, new { @class = "form-control m-input", @id="m_timepicker_1", @Placeholder = "StartTime", @required = "Required" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    End Time:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.EndTime, new { @class = "form-control m-input", @id = "m_timepicker_1", @Placeholder = "EndTime", @required = "Required" })
+                                </div>
+
+                                <label class="col-lg-1 col-form-label">
+                                    Agent Seat:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.AgentSeat, new { @class = "form-control m-input", @placeholder = "AgentSeat", @type = "number", @min = "1", @required = "Required" })
+                                </div>
+
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-1 col-form-label">
+                                   Guest Registration:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.CheckBoxFor(x => x.IsGuestRegistration, new { @class = "" ,@onChange="Guest()"})
+                                </div>
+
+                                <label id="lblGst" style="display:none" class="col-lg-1 col-form-label">
+                                    Guest Seat:
+                                </label>
+                                <div id="DivGst" style="display:none" class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.GuestSeat, new { @class = "form-control m-input", @placeholder = "GuestSeat", @type = "number", @min = "0", @required = "Required" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    RSVP By:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.RSVP_By_Bind, new { @class = "form-control m-input", @required = "Required", @type = "date" })
+                                </div>
+                                <label class="col-lg-1 col-form-label">
+                                    RSVP Time:
+                                </label>
+                                <div class="col-lg-3">
+                                    @Html.TextBoxFor(x => x.RSVP_Time, new { @class = "form-control m-input", @id = "m_timepicker_1", @Placeholder = "RSVP Time", @required = "Required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-7">
+                                        <button type="submit" class="btn btn-brand">
+                                            Submit
+                                        </button>
+                                        @*<button type="reset" class="btn btn-secondary">
+                                            Reset
+                                        </button>*@
+                                        <a href="@Url.Action("Event","Home")" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    }
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script>
+
+    $('#IsGuestRegistration').click(function () {
+
+        //check if checkbox is checked
+        if ($(this).is(':checked')) {
+            $('#lblGst').show();
+            $('#DivGst').show();
+            //$('#BtnSubmit').removeAttr('disabled'); //enable input
+
+        } else {
+            $('#lblGst').hide();
+            $('#DivGst').hide();
+            $('#GuestSeat').val('0');
+            //$('#BtnSubmit').attr('disabled', true); //disable input
+        }
+    });
+
+</script>
+@if (Model.IsGuestRegistration == true)
+{ 
+    <script>
+        $('#lblGst').show();
+        $('#DivGst').show();
+    </script>
+}

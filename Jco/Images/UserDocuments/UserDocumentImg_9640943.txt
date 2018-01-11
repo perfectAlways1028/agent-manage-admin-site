@@ -1,0 +1,10 @@
+
+https://stackoverflow.com/questions/30469058/google-gdata-client-gdatarequestexception-authentication-suddenly-fails-in-old
+
+http://www.c-sharpcorner.com/blogs/retrieve-gmail-contacts-name-with-email-in-asp-net1
+
+https://stackoverflow.com/questions/30469058/google-gdata-client-gdatarequestexception-authentication-suddenly-fails-in-old
+
+https://www.youtube.com/watch?v=HvQ6fbNFxO4
+
+ttp://www.c-sharpcorner.com/UploadFile/9f0ae2/import-gmail-contacts-in-Asp-Net/

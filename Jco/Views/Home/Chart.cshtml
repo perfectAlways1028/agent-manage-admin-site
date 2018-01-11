@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Chart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div class="col-lg-12">
+    <div>
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <br /><br /><br />
+                <label class="col-lg-1 col-form-label">
+                    From Date:
+                </label>
+                <div class="col-lg-3">
+                    <input type="date" class="form-control m-input" id="date1" placeholder="Date" required="Required" />
+                </div>
+
+                <label class="col-lg-1 col-form-label">
+                    To Date:
+                </label>
+                <div class="col-lg-3">
+                    <input type="date" class="form-control m-input" id="date2" placeholder="Date" required="Required" />
+                </div>
+                <div class="col-lg-3">
+                    <button type="submit" class="btn btn-brand" onclick="SearchByDate();">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="chart_div" style="height:80%; width:100%"></div>
+        </div>
+
+
+        <script>
+            google.charts.load('current', { packages: ['corechart', 'bar'] });
+            google.charts.setOnLoadCallback(drawStacked);
+
+            function drawStacked() {
+
+                $.post("/Home/GetChartList", {},
+                 function (data) {
+                     //debugger;
+                     var elements = data;
+                     //var list = JSON.stringify(data);
+                     //console.log(JSON.parse(list));
+                     var array = [];
+                     array.push(['Element', 'Amount', { role: 'style' }]);
+                     $.each(data, function (index, value) {
+                         var childArray = [];
+                         childArray.push(value.Name);
+                         childArray.push(value.Amount);
+                         childArray.push(randomColor({ hue: 'purple', count: 18 })[0]);
+                         array.push(childArray);
+                     });
+                     //     var data = google.visualization.arrayToDataTable([
+                     //  ['Element', 'Density', { role: 'style' }],
+                     //  ['Copper', 8.94, '#b87333'],            // RGB value
+                     //  ['Silver', 10.49, 'silver'],            // English color name
+                     //  ['Gold', 19.30, 'gold'],
+
+                     //['Platinum', 21.45, 'color: #e5e4e2'], // CSS-style declaration
+                     //     ]);
+
+                     var data = google.visualization.arrayToDataTable(array);
+                     var options = {
+                         title: 'Agent Chart List',
+                         chartArea: { width: '30%' },
+                         isStacked: true,
+                         hAxis: {
+                             title: 'Total Distribute Amount',
+                             minValue: 0,
+                         },
+                         vAxis: {
+                             //title: 'City'
+                         }
+                     };
+                     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                     chart.draw(data, options);
+                 });
+
+            }
+        </script>
+<script>
+    function SearchByDate()
+    {
+        var fromdate = $('#date1').val();
+        var ToDate = $('#date2').val();
+        if (fromdate == "" || ToDate == "") {
+            alert("Select Date");
+            return false;         
+        }
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(drawStacked);
+
+        function drawStacked() {
+
+            $.post("/Home/GetChartListByDate", { fromdate: fromdate, ToDate: ToDate },
+             function (data) {
+                 //debugger;
+                 var elements = data;
+                 //var list = JSON.stringify(data);
+                 //console.log(JSON.parse(list));
+                 var array = [];
+                 array.push(['Element', 'Amount', { role: 'style' }]);
+                 $.each(data, function (index, value) {
+                     var childArray = [];
+                     childArray.push(value.Name);
+                     childArray.push(value.Amount);
+                     childArray.push(randomColor({ hue: 'purple', count: 18 })[0]);
+                     array.push(childArray);
+                 });
+                 //     var data = google.visualization.arrayToDataTable([
+                 //  ['Element', 'Density', { role: 'style' }],
+                 //  ['Copper', 8.94, '#b87333'],            // RGB value
+                 //  ['Silver', 10.49, 'silver'],            // English color name
+                 //  ['Gold', 19.30, 'gold'],
+
+                 //['Platinum', 21.45, 'color: #e5e4e2'], // CSS-style declaration
+                 //     ]);
+
+                 var data = google.visualization.arrayToDataTable(array);
+                 var options = {
+                     title: 'Agent Chart List',
+                     chartArea: { width: '30%' },
+                     isStacked: true,
+                     hAxis: {
+                         title: 'Total Distribute Amount',
+                         minValue: 0,
+                     },
+                     vAxis: {
+                         //title: 'City'
+                     }
+                 };
+                 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                 chart.draw(data, options);
+             });
+
+        }
+    }
+</script>

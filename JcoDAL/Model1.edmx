@@ -1,0 +1,1835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JCOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgentEventParticipate">
+          <Key>
+            <PropertyRef Name="EventparticipateId" />
+          </Key>
+          <Property Name="EventparticipateId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="bigint" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementId" />
+          </Key>
+          <Property Name="AnnouncementId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignAnnouncement">
+          <Key>
+            <PropertyRef Name="AssignAnnouncementId" />
+          </Key>
+          <Property Name="AssignAnnouncementId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnnouncementId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignDuty">
+          <Key>
+            <PropertyRef Name="AssignDutyId" />
+          </Key>
+          <Property Name="AssignDutyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DutyId" Type="bigint" Nullable="false" />
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="RTS" Type="nvarchar(max)" />
+          <Property Name="UserAvailable" Type="bit" />
+          <Property Name="trade_message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AssignPollingAgent">
+          <Key>
+            <PropertyRef Name="AssignPollingAgentId" />
+          </Key>
+          <Property Name="AssignPollingAgentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="PollId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Award">
+          <Key>
+            <PropertyRef Name="AwardId" />
+          </Key>
+          <Property Name="AwardId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="AwardImage" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyProfile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Logo" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Duty">
+          <Key>
+            <PropertyRef Name="DutyId" />
+          </Key>
+          <Property Name="DutyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="DateFrom" Type="date" Nullable="false" />
+          <Property Name="DateTo" Type="date" Nullable="false" />
+          <Property Name="RoadshowCode" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="nvarchar(max)" />
+          <Property Name="EndTime" Type="nvarchar(max)" />
+          <Property Name="AgentSeat" Type="int" Nullable="false" />
+          <Property Name="IsGuestRegistration" Type="bit" Nullable="false" />
+          <Property Name="GuestSeat" Type="int" Nullable="false" />
+          <Property Name="RSVP_By" Type="datetime" Nullable="false" />
+          <Property Name="RSVP_Time" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestId" />
+          </Key>
+          <Property Name="GuestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="bigint" Nullable="false" />
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="GuestName" Type="nvarchar(max)" />
+          <Property Name="NRIC_OR_ID" Type="nvarchar(max)" />
+          <Property Name="Age" Type="nvarchar(max)" />
+          <Property Name="GuestEmail" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inception">
+          <Key>
+            <PropertyRef Name="InceptionId" />
+          </Key>
+          <Property Name="InceptionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthFrom" Type="bigint" Nullable="false" />
+          <Property Name="YearFrom" Type="bigint" Nullable="false" />
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="MTD_WAPI" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="YTD_WAPI" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManagerdistributeAmount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="bigint" />
+          <Property Name="ManagerId" Type="bigint" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Poll">
+          <Key>
+            <PropertyRef Name="PollId" />
+          </Key>
+          <Property Name="PollId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="VoteLastDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollOption">
+          <Key>
+            <PropertyRef Name="PollOptionId" />
+          </Key>
+          <Property Name="PollOptionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Options" Type="nvarchar(max)" />
+          <Property Name="IsTrue" Type="bit" Nullable="false" />
+          <Property Name="PollId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PollResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PollId" Type="bigint" />
+          <Property Name="AgentId" Type="bigint" />
+          <Property Name="ResultId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RequestTrade">
+          <Key>
+            <PropertyRef Name="RequestTradeId" />
+          </Key>
+          <Property Name="RequestTradeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestAgentId" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="AssignDutyId" Type="bigint" Nullable="false" />
+          <Property Name="Accept" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleAssignment">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="AssignmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="bigint" />
+          <Property Name="ModuleId" Type="bigint" />
+          <Property Name="AddRecord" Type="bit" Nullable="false" />
+          <Property Name="EditRecord" Type="bit" Nullable="false" />
+          <Property Name="DeleteRecord" Type="bit" Nullable="false" />
+          <Property Name="ViewRecord" Type="bit" Nullable="false" />
+          <Property Name="LastUpdateOn" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="AgentCode" Type="nvarchar(max)" />
+          <Property Name="JoinDate" Type="nvarchar(max)" />
+          <Property Name="Designation" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ManagerID" Type="bigint" />
+          <Property Name="AgentTarget" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeviceId" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="UserDocument">
+          <Key>
+            <PropertyRef Name="UserDocumentId" />
+          </Key>
+          <Property Name="UserDocumentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="DocumentName" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="DocumentExtension" Type="nvarchar(max)" />
+          <Property Name="DocType" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgentEventParticipate_AgentEventParticipate">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="AgentEventParticipate" Type="Self.AgentEventParticipate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AgentEventParticipate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgentEventParticipate_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="AgentEventParticipate" Type="Self.AgentEventParticipate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="AgentEventParticipate">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignAnnouncement_Announcement">
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="1" />
+          <End Role="AssignAnnouncement" Type="Self.AssignAnnouncement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcement">
+              <PropertyRef Name="AnnouncementId" />
+            </Principal>
+            <Dependent Role="AssignAnnouncement">
+              <PropertyRef Name="AnnouncementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignAnnouncement_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="AssignAnnouncement" Type="Self.AssignAnnouncement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignAnnouncement">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignDuty_AgentId">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="AssignDuty" Type="Self.AssignDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignDuty">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignDuty_Duty">
+          <End Role="Duty" Type="Self.Duty" Multiplicity="1" />
+          <End Role="AssignDuty" Type="Self.AssignDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Duty">
+              <PropertyRef Name="DutyId" />
+            </Principal>
+            <Dependent Role="AssignDuty">
+              <PropertyRef Name="DutyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignPollingAgent_Agent">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="AssignPollingAgent" Type="Self.AssignPollingAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignPollingAgent">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignPollingAgent_Polling">
+          <End Role="Poll" Type="Self.Poll" Multiplicity="1" />
+          <End Role="AssignPollingAgent" Type="Self.AssignPollingAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="AssignPollingAgent">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Award_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Award" Type="Self.Award" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Award">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_Agent">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inception_Agent">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Inception" Type="Self.Inception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Inception">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerdistributeAmount_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="ManagerdistributeAmount" Type="Self.ManagerdistributeAmount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ManagerdistributeAmount">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerdistributeAmount_TblUser1">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="ManagerdistributeAmount" Type="Self.ManagerdistributeAmount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ManagerdistributeAmount">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poll_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Poll" Type="Self.Poll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Poll">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollOption_Poll">
+          <End Role="Poll" Type="Self.Poll" Multiplicity="1" />
+          <End Role="PollOption" Type="Self.PollOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="PollOption">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_Poll">
+          <End Role="Poll" Type="Self.Poll" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_PollOption">
+          <End Role="PollOption" Type="Self.PollOption" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PollOption">
+              <PropertyRef Name="PollOptionId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="ResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTrade_AssignDuty">
+          <End Role="AssignDuty" Type="Self.AssignDuty" Multiplicity="1" />
+          <End Role="RequestTrade" Type="Self.RequestTrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignDuty">
+              <PropertyRef Name="AssignDutyId" />
+            </Principal>
+            <Dependent Role="RequestTrade">
+              <PropertyRef Name="AssignDutyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTrade_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="RequestTrade" Type="Self.RequestTrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RequestTrade">
+              <PropertyRef Name="RequestAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_UpdatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAssignment_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="RoleAssignment" Type="Self.RoleAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RoleAssignment">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUser_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TblUser">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDocument_UserID">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="UserDocument" Type="Self.UserDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserDocument">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JCOModelStoreContainer">
+          <EntitySet Name="AgentEventParticipate" EntityType="Self.AgentEventParticipate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignAnnouncement" EntityType="Self.AssignAnnouncement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignDuty" EntityType="Self.AssignDuty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignPollingAgent" EntityType="Self.AssignPollingAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Award" EntityType="Self.Award" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyProfile" EntityType="Self.CompanyProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Duty" EntityType="Self.Duty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inception" EntityType="Self.Inception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerdistributeAmount" EntityType="Self.ManagerdistributeAmount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poll" EntityType="Self.Poll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PollOption" EntityType="Self.PollOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PollResult" EntityType="Self.PollResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestTrade" EntityType="Self.RequestTrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleAssignment" EntityType="Self.RoleAssignment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUser" EntityType="Self.TblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDocument" EntityType="Self.UserDocument" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AgentEventParticipate_AgentEventParticipate" Association="Self.FK_AgentEventParticipate_AgentEventParticipate">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="AgentEventParticipate" EntitySet="AgentEventParticipate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgentEventParticipate_Event" Association="Self.FK_AgentEventParticipate_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="AgentEventParticipate" EntitySet="AgentEventParticipate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_CreatedBy" Association="Self.FK_Announcement_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignAnnouncement_Announcement" Association="Self.FK_AssignAnnouncement_Announcement">
+            <End Role="Announcement" EntitySet="Announcement" />
+            <End Role="AssignAnnouncement" EntitySet="AssignAnnouncement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignAnnouncement_User" Association="Self.FK_AssignAnnouncement_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="AssignAnnouncement" EntitySet="AssignAnnouncement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignDuty_AgentId" Association="Self.FK_AssignDuty_AgentId">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="AssignDuty" EntitySet="AssignDuty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignDuty_Duty" Association="Self.FK_AssignDuty_Duty">
+            <End Role="Duty" EntitySet="Duty" />
+            <End Role="AssignDuty" EntitySet="AssignDuty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignPollingAgent_Agent" Association="Self.FK_AssignPollingAgent_Agent">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="AssignPollingAgent" EntitySet="AssignPollingAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignPollingAgent_Polling" Association="Self.FK_AssignPollingAgent_Polling">
+            <End Role="Poll" EntitySet="Poll" />
+            <End Role="AssignPollingAgent" EntitySet="AssignPollingAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Award_User" Association="Self.FK_Award_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Award" EntitySet="Award" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_User" Association="Self.FK_Event_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guest_Agent" Association="Self.FK_Guest_Agent">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Guest" EntitySet="Guest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guest_Event" Association="Self.FK_Guest_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Guest" EntitySet="Guest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inception_Agent" Association="Self.FK_Inception_Agent">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Inception" EntitySet="Inception" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerdistributeAmount_TblUser" Association="Self.FK_ManagerdistributeAmount_TblUser">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="ManagerdistributeAmount" EntitySet="ManagerdistributeAmount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerdistributeAmount_TblUser1" Association="Self.FK_ManagerdistributeAmount_TblUser1">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="ManagerdistributeAmount" EntitySet="ManagerdistributeAmount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poll_User" Association="Self.FK_Poll_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Poll" EntitySet="Poll" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollOption_Poll" Association="Self.FK_PollOption_Poll">
+            <End Role="Poll" EntitySet="Poll" />
+            <End Role="PollOption" EntitySet="PollOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_Poll" Association="Self.FK_PollResult_Poll">
+            <End Role="Poll" EntitySet="Poll" />
+            <End Role="PollResult" EntitySet="PollResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_PollOption" Association="Self.FK_PollResult_PollOption">
+            <End Role="PollOption" EntitySet="PollOption" />
+            <End Role="PollResult" EntitySet="PollResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_TblUser" Association="Self.FK_PollResult_TblUser">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="PollResult" EntitySet="PollResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTrade_AssignDuty" Association="Self.FK_RequestTrade_AssignDuty">
+            <End Role="AssignDuty" EntitySet="AssignDuty" />
+            <End Role="RequestTrade" EntitySet="RequestTrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTrade_User" Association="Self.FK_RequestTrade_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="RequestTrade" EntitySet="RequestTrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_CreatedBy" Association="Self.FK_Role_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_UpdatedBy" Association="Self.FK_Role_UpdatedBy">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAssignment_CreatedBy" Association="Self.FK_RoleAssignment_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="RoleAssignment" EntitySet="RoleAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_User" Association="Self.FK_Subject_User">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUser_Role" Association="Self.FK_TblUser_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="TblUser" EntitySet="TblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDocument_UserID" Association="Self.FK_UserDocument_UserID">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="UserDocument" EntitySet="UserDocument" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JCOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgentEventParticipate">
+          <Key>
+            <PropertyRef Name="EventparticipateId" />
+          </Key>
+          <Property Name="EventparticipateId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" />
+          <Property Name="UserId" Type="Int64" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_AgentEventParticipate_AgentEventParticipate" FromRole="AgentEventParticipate" ToRole="TblUser" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_AgentEventParticipate_Event" FromRole="AgentEventParticipate" ToRole="Event" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="AnnouncementId" />
+          </Key>
+          <Property Name="AnnouncementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Announcement_CreatedBy" FromRole="Announcement" ToRole="TblUser" />
+          <NavigationProperty Name="AssignAnnouncements" Relationship="JCOModel.FK_AssignAnnouncement_Announcement" FromRole="Announcement" ToRole="AssignAnnouncement" />
+        </EntityType>
+        <EntityType Name="Award">
+          <Key>
+            <PropertyRef Name="AwardId" />
+          </Key>
+          <Property Name="AwardId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AwardImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Award_User" FromRole="Award" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="CompanyProfile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AgentSeat" Type="Int32" Nullable="false" />
+          <Property Name="IsGuestRegistration" Type="Boolean" Nullable="false" />
+          <Property Name="GuestSeat" Type="Int32" Nullable="false" />
+          <Property Name="RSVP_By" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RSVP_Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AgentEventParticipates" Relationship="Self.FK_AgentEventParticipate_Event" FromRole="Event" ToRole="AgentEventParticipate" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Event_User" FromRole="Event" ToRole="TblUser" />
+          <NavigationProperty Name="Guests" Relationship="Self.FK_Guest_Event" FromRole="Event" ToRole="Guest" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestId" />
+          </Key>
+          <Property Name="GuestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int64" Nullable="false" />
+          <Property Name="AgentId" Type="Int64" Nullable="false" />
+          <Property Name="GuestName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NRIC_OR_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GuestEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Guest_Event" FromRole="Guest" ToRole="Event" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Guest_Agent" FromRole="Guest" ToRole="TblUser" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ManagerdistributeAmount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int64" />
+          <Property Name="ManagerId" Type="Int64" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_ManagerdistributeAmount_TblUser" FromRole="ManagerdistributeAmount" ToRole="TblUser" />
+          <NavigationProperty Name="TblUser1" Relationship="Self.FK_ManagerdistributeAmount_TblUser1" FromRole="ManagerdistributeAmount" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="Poll">
+          <Key>
+            <PropertyRef Name="PollId" />
+          </Key>
+          <Property Name="PollId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="VoteLastDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Poll_User" FromRole="Poll" ToRole="TblUser" />
+          <NavigationProperty Name="PollOptions" Relationship="Self.FK_PollOption_Poll" FromRole="Poll" ToRole="PollOption" />
+          <NavigationProperty Name="PollResults" Relationship="Self.FK_PollResult_Poll" FromRole="Poll" ToRole="PollResult" />
+          <NavigationProperty Name="AssignPollingAgents" Relationship="JCOModel.FK_AssignPollingAgent_Polling" FromRole="Poll" ToRole="AssignPollingAgent" />
+        </EntityType>
+        <EntityType Name="PollOption">
+          <Key>
+            <PropertyRef Name="PollOptionId" />
+          </Key>
+          <Property Name="PollOptionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Options" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsTrue" Type="Boolean" Nullable="false" />
+          <Property Name="PollId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Poll" Relationship="Self.FK_PollOption_Poll" FromRole="PollOption" ToRole="Poll" />
+          <NavigationProperty Name="PollResults" Relationship="Self.FK_PollResult_PollOption" FromRole="PollOption" ToRole="PollResult" />
+        </EntityType>
+        <EntityType Name="PollResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PollId" Type="Int64" />
+          <Property Name="AgentId" Type="Int64" />
+          <Property Name="ResultId" Type="Int64" />
+          <NavigationProperty Name="Poll" Relationship="Self.FK_PollResult_Poll" FromRole="PollResult" ToRole="Poll" />
+          <NavigationProperty Name="PollOption" Relationship="Self.FK_PollResult_PollOption" FromRole="PollResult" ToRole="PollOption" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_PollResult_TblUser" FromRole="PollResult" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Role_CreatedBy" FromRole="Role" ToRole="TblUser" />
+          <NavigationProperty Name="TblUser1" Relationship="Self.FK_Role_UpdatedBy" FromRole="Role" ToRole="TblUser" />
+          <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUser_Role" FromRole="Role" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="RoleAssignment">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="AssignmentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int64" />
+          <Property Name="ModuleId" Type="Int64" />
+          <Property Name="AddRecord" Type="Boolean" Nullable="false" />
+          <Property Name="EditRecord" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteRecord" Type="Boolean" Nullable="false" />
+          <Property Name="ViewRecord" Type="Boolean" Nullable="false" />
+          <Property Name="LastUpdateOn" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_RoleAssignment_CreatedBy" FromRole="RoleAssignment" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_Subject_User" FromRole="Subject" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="TblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AgentCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JoinDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ManagerID" Type="Int64" />
+          <NavigationProperty Name="AgentEventParticipates" Relationship="Self.FK_AgentEventParticipate_AgentEventParticipate" FromRole="TblUser" ToRole="AgentEventParticipate" />
+          <NavigationProperty Name="Announcements" Relationship="Self.FK_Announcement_CreatedBy" FromRole="TblUser" ToRole="Announcement" />
+          <NavigationProperty Name="Awards" Relationship="Self.FK_Award_User" FromRole="TblUser" ToRole="Award" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_User" FromRole="TblUser" ToRole="Event" />
+          <NavigationProperty Name="Guests" Relationship="Self.FK_Guest_Agent" FromRole="TblUser" ToRole="Guest" />
+          <NavigationProperty Name="ManagerdistributeAmounts" Relationship="Self.FK_ManagerdistributeAmount_TblUser" FromRole="TblUser" ToRole="ManagerdistributeAmount" />
+          <NavigationProperty Name="ManagerdistributeAmounts1" Relationship="Self.FK_ManagerdistributeAmount_TblUser1" FromRole="TblUser" ToRole="ManagerdistributeAmount" />
+          <NavigationProperty Name="Polls" Relationship="Self.FK_Poll_User" FromRole="TblUser" ToRole="Poll" />
+          <NavigationProperty Name="PollResults" Relationship="Self.FK_PollResult_TblUser" FromRole="TblUser" ToRole="PollResult" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Role_CreatedBy" FromRole="TblUser" ToRole="Role" />
+          <NavigationProperty Name="Roles1" Relationship="Self.FK_Role_UpdatedBy" FromRole="TblUser" ToRole="Role" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_TblUser_Role" FromRole="TblUser" ToRole="Role" />
+          <NavigationProperty Name="RoleAssignments" Relationship="Self.FK_RoleAssignment_CreatedBy" FromRole="TblUser" ToRole="RoleAssignment" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK_Subject_User" FromRole="TblUser" ToRole="Subject" />
+          <NavigationProperty Name="Inceptions" Relationship="JCOModel.FK_Inception_Agent" FromRole="TblUser" ToRole="Inception" />
+          <Property Name="AgentTarget" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="UserDocuments" Relationship="JCOModel.FK_UserDocument_UserID" FromRole="TblUser" ToRole="UserDocument" />
+          <NavigationProperty Name="AssignAnnouncements" Relationship="JCOModel.FK_AssignAnnouncement_User" FromRole="TblUser" ToRole="AssignAnnouncement" />
+          <NavigationProperty Name="AssignPollingAgents" Relationship="JCOModel.FK_AssignPollingAgent_Agent" FromRole="TblUser" ToRole="AssignPollingAgent" />
+          <NavigationProperty Name="AssignDuties" Relationship="JCOModel.FK_AssignDuty_AgentId" FromRole="TblUser" ToRole="AssignDuty" />
+          <NavigationProperty Name="RequestTrades" Relationship="JCOModel.FK_RequestTrade_User" FromRole="TblUser" ToRole="RequestTrade" />
+          <Property Name="DeviceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_AgentEventParticipate_AgentEventParticipate">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="AgentEventParticipate" Type="Self.AgentEventParticipate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AgentEventParticipate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgentEventParticipate_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="AgentEventParticipate" Type="Self.AgentEventParticipate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="AgentEventParticipate">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Award_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Award" Type="Self.Award" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Award">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_Agent">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerdistributeAmount_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="ManagerdistributeAmount" Type="Self.ManagerdistributeAmount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ManagerdistributeAmount">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManagerdistributeAmount_TblUser1">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="ManagerdistributeAmount" Type="Self.ManagerdistributeAmount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ManagerdistributeAmount">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poll_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Poll" Type="Self.Poll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Poll">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollOption_Poll">
+          <End Role="Poll" Type="Self.Poll" Multiplicity="1" />
+          <End Role="PollOption" Type="Self.PollOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="PollOption">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_Poll">
+          <End Role="Poll" Type="Self.Poll" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_PollOption">
+          <End Role="PollOption" Type="Self.PollOption" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PollOption">
+              <PropertyRef Name="PollOptionId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="ResultId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PollResult_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="PollResult" Type="Self.PollResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PollResult">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_UpdatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblUser_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TblUser">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAssignment_CreatedBy">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="0..1" />
+          <End Role="RoleAssignment" Type="Self.RoleAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RoleAssignment">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_User">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JCOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgentEventParticipates" EntityType="Self.AgentEventParticipate" />
+          <EntitySet Name="Announcements" EntityType="Self.Announcement" />
+          <EntitySet Name="Awards" EntityType="Self.Award" />
+          <EntitySet Name="CompanyProfiles" EntityType="Self.CompanyProfile" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Guests" EntityType="Self.Guest" />
+          <EntitySet Name="ManagerdistributeAmounts" EntityType="Self.ManagerdistributeAmount" />
+          <EntitySet Name="Polls" EntityType="Self.Poll" />
+          <EntitySet Name="PollOptions" EntityType="Self.PollOption" />
+          <EntitySet Name="PollResults" EntityType="Self.PollResult" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="RoleAssignments" EntityType="Self.RoleAssignment" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="TblUsers" EntityType="Self.TblUser" />
+          <AssociationSet Name="FK_AgentEventParticipate_AgentEventParticipate" Association="Self.FK_AgentEventParticipate_AgentEventParticipate">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="AgentEventParticipate" EntitySet="AgentEventParticipates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgentEventParticipate_Event" Association="Self.FK_AgentEventParticipate_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="AgentEventParticipate" EntitySet="AgentEventParticipates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_CreatedBy" Association="Self.FK_Announcement_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Announcement" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Award_User" Association="Self.FK_Award_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Award" EntitySet="Awards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_User" Association="Self.FK_Event_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guest_Event" Association="Self.FK_Guest_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guest_Agent" Association="Self.FK_Guest_Agent">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerdistributeAmount_TblUser" Association="Self.FK_ManagerdistributeAmount_TblUser">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="ManagerdistributeAmount" EntitySet="ManagerdistributeAmounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManagerdistributeAmount_TblUser1" Association="Self.FK_ManagerdistributeAmount_TblUser1">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="ManagerdistributeAmount" EntitySet="ManagerdistributeAmounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poll_User" Association="Self.FK_Poll_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Poll" EntitySet="Polls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollOption_Poll" Association="Self.FK_PollOption_Poll">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="PollOption" EntitySet="PollOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_Poll" Association="Self.FK_PollResult_Poll">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="PollResult" EntitySet="PollResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_PollOption" Association="Self.FK_PollResult_PollOption">
+            <End Role="PollOption" EntitySet="PollOptions" />
+            <End Role="PollResult" EntitySet="PollResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PollResult_TblUser" Association="Self.FK_PollResult_TblUser">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="PollResult" EntitySet="PollResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_CreatedBy" Association="Self.FK_Role_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_UpdatedBy" Association="Self.FK_Role_UpdatedBy">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblUser_Role" Association="Self.FK_TblUser_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAssignment_CreatedBy" Association="Self.FK_RoleAssignment_CreatedBy">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="RoleAssignment" EntitySet="RoleAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_User" Association="Self.FK_Subject_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <EntitySet Name="Duties" EntityType="JCOModel.Duty" />
+          <EntitySet Name="Inceptions" EntityType="JCOModel.Inception" />
+          <AssociationSet Name="FK_Inception_Agent" Association="JCOModel.FK_Inception_Agent">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="Inception" EntitySet="Inceptions" />
+          </AssociationSet>
+          <EntitySet Name="UserDocuments" EntityType="JCOModel.UserDocument" />
+          <AssociationSet Name="FK_UserDocument_UserID" Association="JCOModel.FK_UserDocument_UserID">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="UserDocument" EntitySet="UserDocuments" />
+          </AssociationSet>
+          <EntitySet Name="AssignAnnouncements" EntityType="JCOModel.AssignAnnouncement" />
+          <AssociationSet Name="FK_AssignAnnouncement_Announcement" Association="JCOModel.FK_AssignAnnouncement_Announcement">
+            <End Role="Announcement" EntitySet="Announcements" />
+            <End Role="AssignAnnouncement" EntitySet="AssignAnnouncements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignAnnouncement_User" Association="JCOModel.FK_AssignAnnouncement_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="AssignAnnouncement" EntitySet="AssignAnnouncements" />
+          </AssociationSet>
+          <EntitySet Name="AssignPollingAgents" EntityType="JCOModel.AssignPollingAgent" />
+          <AssociationSet Name="FK_AssignPollingAgent_Agent" Association="JCOModel.FK_AssignPollingAgent_Agent">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="AssignPollingAgent" EntitySet="AssignPollingAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignPollingAgent_Polling" Association="JCOModel.FK_AssignPollingAgent_Polling">
+            <End Role="Poll" EntitySet="Polls" />
+            <End Role="AssignPollingAgent" EntitySet="AssignPollingAgents" />
+          </AssociationSet>
+          <EntitySet Name="AssignDuties" EntityType="JCOModel.AssignDuty" />
+          <EntitySet Name="RequestTrades" EntityType="JCOModel.RequestTrade" />
+          <AssociationSet Name="FK_AssignDuty_AgentId" Association="JCOModel.FK_AssignDuty_AgentId">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="AssignDuty" EntitySet="AssignDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignDuty_Duty" Association="JCOModel.FK_AssignDuty_Duty">
+            <End Role="Duty" EntitySet="Duties" />
+            <End Role="AssignDuty" EntitySet="AssignDuties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTrade_AssignDuty" Association="JCOModel.FK_RequestTrade_AssignDuty">
+            <End Role="AssignDuty" EntitySet="AssignDuties" />
+            <End Role="RequestTrade" EntitySet="RequestTrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTrade_User" Association="JCOModel.FK_RequestTrade_User">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="RequestTrade" EntitySet="RequestTrades" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Duty">
+          <Key>
+            <PropertyRef Name="DutyId" />
+          </Key>
+          <Property Name="DutyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RoadshowCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="AssignDuties" Relationship="JCOModel.FK_AssignDuty_Duty" FromRole="Duty" ToRole="AssignDuty" />
+        </EntityType>
+        <EntityType Name="Inception">
+          <Key>
+            <PropertyRef Name="InceptionId" />
+          </Key>
+          <Property Name="InceptionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthFrom" Type="Int64" Nullable="false" />
+          <Property Name="YearFrom" Type="Int64" Nullable="false" />
+          <Property Name="AgentId" Type="Int64" Nullable="false" />
+          <Property Name="MTD_WAPI" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="YTD_WAPI" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_Inception_Agent" FromRole="Inception" ToRole="TblUser" />
+        </EntityType>
+        <Association Name="FK_Inception_Agent">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.Inception" Role="Inception" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Inception">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserDocument">
+          <Key>
+            <PropertyRef Name="UserDocumentId" />
+          </Key>
+          <Property Name="UserDocumentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="DocumentExtension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_UserDocument_UserID" FromRole="UserDocument" ToRole="TblUser" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserDocument_UserID">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.UserDocument" Role="UserDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserDocument">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssignAnnouncement">
+          <Key>
+            <PropertyRef Name="AssignAnnouncementId" />
+          </Key>
+          <Property Name="AssignAnnouncementId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnnouncementId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Announcement" Relationship="JCOModel.FK_AssignAnnouncement_Announcement" FromRole="AssignAnnouncement" ToRole="Announcement" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_AssignAnnouncement_User" FromRole="AssignAnnouncement" ToRole="TblUser" />
+        </EntityType>
+        <Association Name="FK_AssignAnnouncement_Announcement">
+          <End Type="JCOModel.Announcement" Role="Announcement" Multiplicity="1" />
+          <End Type="JCOModel.AssignAnnouncement" Role="AssignAnnouncement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Announcement">
+              <PropertyRef Name="AnnouncementId" />
+            </Principal>
+            <Dependent Role="AssignAnnouncement">
+              <PropertyRef Name="AnnouncementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignAnnouncement_User">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.AssignAnnouncement" Role="AssignAnnouncement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignAnnouncement">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssignPollingAgent">
+          <Key>
+            <PropertyRef Name="AssignPollingAgentId" />
+          </Key>
+          <Property Name="AssignPollingAgentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int64" Nullable="false" />
+          <Property Name="PollId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_AssignPollingAgent_Agent" FromRole="AssignPollingAgent" ToRole="TblUser" />
+          <NavigationProperty Name="Poll" Relationship="JCOModel.FK_AssignPollingAgent_Polling" FromRole="AssignPollingAgent" ToRole="Poll" />
+        </EntityType>
+        <Association Name="FK_AssignPollingAgent_Agent">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.AssignPollingAgent" Role="AssignPollingAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignPollingAgent">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignPollingAgent_Polling">
+          <End Type="JCOModel.Poll" Role="Poll" Multiplicity="1" />
+          <End Type="JCOModel.AssignPollingAgent" Role="AssignPollingAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poll">
+              <PropertyRef Name="PollId" />
+            </Principal>
+            <Dependent Role="AssignPollingAgent">
+              <PropertyRef Name="PollId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AssignDuty">
+          <Key>
+            <PropertyRef Name="AssignDutyId" />
+          </Key>
+          <Property Name="AssignDutyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DutyId" Type="Int64" Nullable="false" />
+          <Property Name="AgentId" Type="Int64" Nullable="false" />
+          <Property Name="RTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserAvailable" Type="Boolean" />
+          <Property Name="trade_message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_AssignDuty_AgentId" FromRole="AssignDuty" ToRole="TblUser" />
+          <NavigationProperty Name="Duty" Relationship="JCOModel.FK_AssignDuty_Duty" FromRole="AssignDuty" ToRole="Duty" />
+          <NavigationProperty Name="RequestTrades" Relationship="JCOModel.FK_RequestTrade_AssignDuty" FromRole="AssignDuty" ToRole="RequestTrade" />
+        </EntityType>
+        <EntityType Name="RequestTrade">
+          <Key>
+            <PropertyRef Name="RequestTradeId" />
+          </Key>
+          <Property Name="RequestTradeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestAgentId" Type="Int64" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignDutyId" Type="Int64" Nullable="false" />
+          <Property Name="Accept" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AssignDuty" Relationship="JCOModel.FK_RequestTrade_AssignDuty" FromRole="RequestTrade" ToRole="AssignDuty" />
+          <NavigationProperty Name="TblUser" Relationship="JCOModel.FK_RequestTrade_User" FromRole="RequestTrade" ToRole="TblUser" />
+        </EntityType>
+        <Association Name="FK_AssignDuty_AgentId">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.AssignDuty" Role="AssignDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignDuty">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignDuty_Duty">
+          <End Type="JCOModel.Duty" Role="Duty" Multiplicity="1" />
+          <End Type="JCOModel.AssignDuty" Role="AssignDuty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Duty">
+              <PropertyRef Name="DutyId" />
+            </Principal>
+            <Dependent Role="AssignDuty">
+              <PropertyRef Name="DutyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTrade_AssignDuty">
+          <End Type="JCOModel.AssignDuty" Role="AssignDuty" Multiplicity="1" />
+          <End Type="JCOModel.RequestTrade" Role="RequestTrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignDuty">
+              <PropertyRef Name="AssignDutyId" />
+            </Principal>
+            <Dependent Role="RequestTrade">
+              <PropertyRef Name="AssignDutyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTrade_User">
+          <End Type="JCOModel.TblUser" Role="TblUser" Multiplicity="1" />
+          <End Type="JCOModel.RequestTrade" Role="RequestTrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="RequestTrade">
+              <PropertyRef Name="RequestAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JCOModelStoreContainer" CdmEntityContainer="JCOEntities">
+          <EntitySetMapping Name="AgentEventParticipates">
+            <EntityTypeMapping TypeName="JCOModel.AgentEventParticipate">
+              <MappingFragment StoreEntitySet="AgentEventParticipate">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EventparticipateId" ColumnName="EventparticipateId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="JCOModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="AnnouncementId" ColumnName="AnnouncementId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Awards">
+            <EntityTypeMapping TypeName="JCOModel.Award">
+              <MappingFragment StoreEntitySet="Award">
+                <ScalarProperty Name="AwardId" ColumnName="AwardId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AwardImage" ColumnName="AwardImage" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyProfiles">
+            <EntityTypeMapping TypeName="JCOModel.CompanyProfile">
+              <MappingFragment StoreEntitySet="CompanyProfile">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="JCOModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="AgentSeat" ColumnName="AgentSeat" />
+                <ScalarProperty Name="IsGuestRegistration" ColumnName="IsGuestRegistration" />
+                <ScalarProperty Name="GuestSeat" ColumnName="GuestSeat" />
+                <ScalarProperty Name="RSVP_By" ColumnName="RSVP_By" />
+                <ScalarProperty Name="RSVP_Time" ColumnName="RSVP_Time" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="JCOModel.Guest">
+              <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="GuestName" ColumnName="GuestName" />
+                <ScalarProperty Name="NRIC_OR_ID" ColumnName="NRIC_OR_ID" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="GuestEmail" ColumnName="GuestEmail" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerdistributeAmounts">
+            <EntityTypeMapping TypeName="JCOModel.ManagerdistributeAmount">
+              <MappingFragment StoreEntitySet="ManagerdistributeAmount">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polls">
+            <EntityTypeMapping TypeName="JCOModel.Poll">
+              <MappingFragment StoreEntitySet="Poll">
+                <ScalarProperty Name="PollId" ColumnName="PollId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="VoteLastDate" ColumnName="VoteLastDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollOptions">
+            <EntityTypeMapping TypeName="JCOModel.PollOption">
+              <MappingFragment StoreEntitySet="PollOption">
+                <ScalarProperty Name="PollOptionId" ColumnName="PollOptionId" />
+                <ScalarProperty Name="Options" ColumnName="Options" />
+                <ScalarProperty Name="IsTrue" ColumnName="IsTrue" />
+                <ScalarProperty Name="PollId" ColumnName="PollId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PollResults">
+            <EntityTypeMapping TypeName="JCOModel.PollResult">
+              <MappingFragment StoreEntitySet="PollResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PollId" ColumnName="PollId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="JCOModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleAssignments">
+            <EntityTypeMapping TypeName="JCOModel.RoleAssignment">
+              <MappingFragment StoreEntitySet="RoleAssignment">
+                <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="AddRecord" ColumnName="AddRecord" />
+                <ScalarProperty Name="EditRecord" ColumnName="EditRecord" />
+                <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
+                <ScalarProperty Name="ViewRecord" ColumnName="ViewRecord" />
+                <ScalarProperty Name="LastUpdateOn" ColumnName="LastUpdateOn" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="JCOModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUsers">
+            <EntityTypeMapping TypeName="JCOModel.TblUser">
+              <MappingFragment StoreEntitySet="TblUser">
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="AgentTarget" ColumnName="AgentTarget" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="AgentCode" ColumnName="AgentCode" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Duties">
+            <EntityTypeMapping TypeName="JCOModel.Duty">
+              <MappingFragment StoreEntitySet="Duty">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoadshowCode" ColumnName="RoadshowCode" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inceptions">
+            <EntityTypeMapping TypeName="JCOModel.Inception">
+              <MappingFragment StoreEntitySet="Inception">
+                <ScalarProperty Name="YTD_WAPI" ColumnName="YTD_WAPI" />
+                <ScalarProperty Name="MTD_WAPI" ColumnName="MTD_WAPI" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="YearFrom" ColumnName="YearFrom" />
+                <ScalarProperty Name="MonthFrom" ColumnName="MonthFrom" />
+                <ScalarProperty Name="InceptionId" ColumnName="InceptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDocuments">
+            <EntityTypeMapping TypeName="JCOModel.UserDocument">
+              <MappingFragment StoreEntitySet="UserDocument">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="DocumentExtension" ColumnName="DocumentExtension" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserDocumentId" ColumnName="UserDocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignAnnouncements">
+            <EntityTypeMapping TypeName="JCOModel.AssignAnnouncement">
+              <MappingFragment StoreEntitySet="AssignAnnouncement">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AnnouncementId" ColumnName="AnnouncementId" />
+                <ScalarProperty Name="AssignAnnouncementId" ColumnName="AssignAnnouncementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignPollingAgents">
+            <EntityTypeMapping TypeName="JCOModel.AssignPollingAgent">
+              <MappingFragment StoreEntitySet="AssignPollingAgent">
+                <ScalarProperty Name="PollId" ColumnName="PollId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="AssignPollingAgentId" ColumnName="AssignPollingAgentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignDuties">
+            <EntityTypeMapping TypeName="JCOModel.AssignDuty">
+              <MappingFragment StoreEntitySet="AssignDuty">
+                <ScalarProperty Name="trade_message" ColumnName="trade_message" />
+                <ScalarProperty Name="UserAvailable" ColumnName="UserAvailable" />
+                <ScalarProperty Name="RTS" ColumnName="RTS" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="DutyId" ColumnName="DutyId" />
+                <ScalarProperty Name="AssignDutyId" ColumnName="AssignDutyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTrades">
+            <EntityTypeMapping TypeName="JCOModel.RequestTrade">
+              <MappingFragment StoreEntitySet="RequestTrade">
+                <ScalarProperty Name="Accept" ColumnName="Accept" />
+                <ScalarProperty Name="AssignDutyId" ColumnName="AssignDutyId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="RequestAgentId" ColumnName="RequestAgentId" />
+                <ScalarProperty Name="RequestTradeId" ColumnName="RequestTradeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
